@@ -1,24 +1,26 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        temp = s1+s2
-        temp_arr =[]
         
-        temp_arr_2 = []
-        for each in temp:
-            temp_arr.append(each)
-            
-        for each in s3:
-            temp_arr_2.append(each)
-            
-        return ("".join(sorted(temp_arr)) =="".join(sorted(temp_arr_2)))    
-            
+        if len(s1)+ len(s2) != len(s3):
+            return False
+        r1 = 0
+        r2 = 0
+        r3 =0
         
-        
+        while r3 < len(s3):
+            if r1 < len(s1) and s1[r1] == s3[r3]:
+                r1+=1
+            elif r2 < len(s2) and s2[r2] == s3[r3]:
+                r2 +=1
+            else:
+                return False
+            r3+=1
+            
+        return True
 
-
-s1 ="aabcc"
-s2 ="dbbca"
-s3 ="aadbbcbcc"
+s1 ="aaa"
+s2 ="bbbc"
+s3 ="aaabbbx"
 
 obj = Solution()
 
